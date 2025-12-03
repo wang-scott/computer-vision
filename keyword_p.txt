@@ -1,0 +1,11 @@
+knife
+scissors
+hammer
+screwdriver
+pliers
+saw
+box cutter
+glass
+needle
+lighter
+gas stove

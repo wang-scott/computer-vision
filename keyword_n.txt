@@ -1,0 +1,25 @@
+cup
+mug
+pen
+pencil
+book
+notebook
+t-shirt
+shoe
+toy
+spoon
+fork
+plate
+bowl
+remote control
+mobile phone
+laptop
+keyboard
+mouse
+towel
+pillow
+stuffed animal
+plant
+water bottle
+chair
+table
