@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>圖片分類 Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS（美化介面） -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Chart.js（統計圖表） -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      body {
+        min-height: 100vh;
+        background: radial-gradient(circle at top left, #e0f7fa, #f5f5f5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .main-card {
+        max-width: 900px;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .preview-img {
+        max-width: 100%;
+        border-radius: 0.75rem;
+        object-fit: contain;
+        max-height: 260px;
+      }
+
+      .brand-text {
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .badge-pill {
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card main-card">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h2 class="brand-text mb-0">圖片分類 Demo</h2>
+            <small class="text-muted"
+              >手機可直接拍照，電腦可從本機選取圖片</small
+            >
+          </div>
+          <span
+            class="badge bg-primary-subtle text-primary badge-pill px-3 py-2"
+          >
+            Flask + Chart.js
+          </span>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <!-- 左側：上傳區 & 預覽區 -->
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="imageInput" class="form-label fw-semibold">
+                選擇或拍攝一張圖片
+              </label>
+              <input
+                class="form-control"
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                capture="environment"
+              />
+              <div class="form-text">
+                手機：會啟動相機或相簿；電腦：開啟檔案選擇視窗。
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-100 mb-3" id="uploadBtn">
+              上傳並取得預測結果
+            </button>
+
+            <div id="statusText" class="small text-muted"></div>
+
+            <div id="previewWrapper" class="mt-3 d-none">
+              <h6 class="fw-semibold mb-2">圖片預覽</h6>
+              <img id="previewImg" class="preview-img border" alt="預覽圖片" />
+            </div>
+          </div>
+
+          <!-- 右側：結果 & 統計圖 -->
+          <div class="col-md-7">
+            <div class="mb-3">
+              <h5 class="fw-semibold mb-2">預測結果</h5>
+              <div class="border rounded-3 p-3 bg-light" id="resultBox">
+                尚未上傳圖片。
+              </div>
+            </div>
+
+            <div>
+              <h5 class="fw-semibold mb-2">統計圖（本次開啟期間）</h5>
+              <div class="border rounded-3 p-3 bg-white" style="height: 250px">
+                <canvas id="statsChart"></canvas>
+                <div class="small text-muted mt-2">
+                  此圖統計你在這次開啟網頁期間，每個類別被預測的次數（假資料）。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 從後端傳來的 labels
+      const LABELS = {{ labels | tojson }};
+
+      // 用來記錄每個類別被預測幾次
+      const predictionCounts = {};
+      LABELS.forEach(label => predictionCounts[label] = 0);
+
+      const imageInput = document.getElementById('imageInput');
+      const uploadBtn = document.getElementById('uploadBtn');
+      const statusText = document.getElementById('statusText');
+      const resultBox = document.getElementById('resultBox');
+      const previewWrapper = document.getElementById('previewWrapper');
+      const previewImg = document.getElementById('previewImg');
+
+      // 建立 Chart.js 柱狀圖
+      const ctx = document.getElementById('statsChart').getContext('2d');
+      const statsChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: LABELS,
+              datasets: [{
+                  label: '預測次數',
+                  data: LABELS.map(label => predictionCounts[label]),
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      ticks: {
+                          precision: 0,
+                          stepSize: 1
+                      }
+                  }
+              }
+          }
+      });
+
+      // 當使用者選擇圖片時，顯示預覽
+      imageInput.addEventListener('change', () => {
+          const file = imageInput.files[0];
+          if (!file) {
+              previewWrapper.classList.add('d-none');
+              return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = e => {
+              previewImg.src = e.target.result;
+              previewWrapper.classList.remove('d-none');
+          };
+          reader.readAsDataURL(file);
+      });
+
+      // 點擊「上傳並取得預測結果」按鈕
+      uploadBtn.addEventListener('click', () => {
+          const file = imageInput.files[0];
+          if (!file) {
+              alert('請先選擇一張圖片。');
+              return;
+          }
+
+          const formData = new FormData();
+          formData.append('image', file);
+
+          statusText.textContent = '上傳中，請稍候...';
+          uploadBtn.disabled = true;
+
+          fetch('/predict', {
+              method: 'POST',
+              body: formData
+          })
+              .then(response => response.json())
+              .then(data => {
+                  uploadBtn.disabled = false;
+
+                  if (data.error) {
+                      statusText.textContent = '錯誤：' + data.error;
+                      return;
+                  }
+
+                  statusText.textContent = '預測完成！';
+
+                  // 顯示預測結果
+                  const confidencePercent = (data.confidence * 100).toFixed(1);
+                  resultBox.innerHTML = `
+                      <p class="mb-1">
+                          <strong>預測類別：</strong>
+                          <span class="badge bg-primary-subtle text-primary">${data.label}</span>
+                      </p>
+                      <p class="mb-0">
+                          <strong>信心分數：</strong> ${confidencePercent}%
+                      </p>
+                  `;
+
+                  // 更新統計資料
+                  if (predictionCounts[data.label] !== undefined) {
+                      predictionCounts[data.label] += 1;
+                      statsChart.data.datasets[0].data = LABELS.map(label => predictionCounts[label]);
+                      statsChart.update();
+                  }
+              })
+              .catch(err => {
+                  console.error(err);
+                  uploadBtn.disabled = false;
+                  statusText.textContent = '伺服器發生錯誤，請稍後再試。';
+              });
+      });
+    </script>
+
+    <!-- Bootstrap JS（可選，這邊只用到 CSS 可以不加） -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
