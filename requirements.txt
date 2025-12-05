@@ -2,5 +2,4 @@ webdriver-manager
 selenium
 requests
 numpy
-opencv-python
 flask==3.0.3
