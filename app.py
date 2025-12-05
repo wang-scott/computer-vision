@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import random
-import cv2
+# import cv2
 import numpy as np
 
 app = Flask(__name__)
@@ -25,10 +25,10 @@ def predict():
         return jsonify({"error": "Empty filename"}), 400
     
     file_bytes = np.frombuffer(file.read(), np.uint8)
-    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-    cv2.imshow("Uploaded Image", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+    # cv2.imshow("Uploaded Image", image)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     
     # === 這裡原本放模型推論 ===
     # 目前先回傳假的預測結果
