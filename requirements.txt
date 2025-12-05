@@ -1,3 +1,6 @@
 webdriver-manager
 selenium
 requests
+numpy
+opencv-python
+flask
