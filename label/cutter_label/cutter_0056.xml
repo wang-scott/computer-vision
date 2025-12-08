@@ -1,0 +1,26 @@
+<annotation>
+	<folder>美工刀</folder>
+	<filename>cutter_0056.jpg</filename>
+	<path>C:\Users\schan\Downloads\dataset\美工刀\cutter_0056.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>800</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cutter</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>31</xmin>
+			<ymin>23</ymin>
+			<xmax>789</xmax>
+			<ymax>782</ymax>
+		</bndbox>
+	</object>
+</annotation>

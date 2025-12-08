@@ -1,0 +1,26 @@
+<annotation>
+	<folder>清潔劑</folder>
+	<filename>cleaner_0049.jpg</filename>
+	<path>C:\Users\schan\Downloads\dataset\清潔劑\cleaner_0049.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>877</width>
+		<height>1241</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cleaner</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>45</xmin>
+			<ymin>391</ymin>
+			<xmax>421</xmax>
+			<ymax>1200</ymax>
+		</bndbox>
+	</object>
+</annotation>

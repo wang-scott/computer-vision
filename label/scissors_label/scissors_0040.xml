@@ -1,0 +1,26 @@
+<annotation>
+	<folder>剪刀</folder>
+	<filename>scissors_0040.jpg</filename>
+	<path>C:\Users\schan\Downloads\dataset\剪刀\scissors_0040.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>973</width>
+		<height>811</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>scissors</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>10</xmin>
+			<ymin>70</ymin>
+			<xmax>965</xmax>
+			<ymax>692</ymax>
+		</bndbox>
+	</object>
+</annotation>

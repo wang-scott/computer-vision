@@ -1,0 +1,26 @@
+<annotation>
+	<folder>瓦斯爐</folder>
+	<filename>gasoven_0166.jpg</filename>
+	<path>C:\Users\awfan\Downloads\dataset\瓦斯爐\gasoven_0166.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>750</width>
+		<height>750</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>gasoven</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>12</xmin>
+			<ymin>193</ymin>
+			<xmax>746</xmax>
+			<ymax>561</ymax>
+		</bndbox>
+	</object>
+</annotation>

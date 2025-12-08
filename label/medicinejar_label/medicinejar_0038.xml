@@ -1,0 +1,26 @@
+<annotation>
+	<folder>藥罐</folder>
+	<filename>medicinejar_0038.jpg</filename>
+	<path>C:\Users\user\Desktop\nchu資料\課程資料\電腦視覺\dataset\藥罐\medicinejar_0038.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1080</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>medicinejar</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>376</xmin>
+			<ymin>282</ymin>
+			<xmax>707</xmax>
+			<ymax>919</ymax>
+		</bndbox>
+	</object>
+</annotation>

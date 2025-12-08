@@ -1,0 +1,9 @@
+cleaner
+cutter
+gasoven
+gastorch
+knife
+medicinejar
+scissors
+screwdriver
+socket

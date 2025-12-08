@@ -1,0 +1,26 @@
+<annotation>
+	<folder>screwdriver</folder>
+	<filename>screwdriver_0124.png</filename>
+	<path>C:\Users\schan\Downloads\dataset\screwdriver\screwdriver_0124.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2023</width>
+		<height>1951</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>screwdriver</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>48</xmin>
+			<ymin>41</ymin>
+			<xmax>1987</xmax>
+			<ymax>1890</ymax>
+		</bndbox>
+	</object>
+</annotation>

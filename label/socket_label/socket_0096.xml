@@ -1,0 +1,26 @@
+<annotation>
+	<folder>延長線</folder>
+	<filename>socket_0096.jpg</filename>
+	<path>C:\Users\schan\Downloads\dataset\延長線\socket_0096.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>800</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>socket</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>436</xmin>
+			<ymin>10</ymin>
+			<xmax>608</xmax>
+			<ymax>776</ymax>
+		</bndbox>
+	</object>
+</annotation>

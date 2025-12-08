@@ -1,0 +1,26 @@
+<annotation>
+	<folder>瓦斯噴燈</folder>
+	<filename>gastorch_0170.jpg</filename>
+	<path>C:\Users\user\Desktop\nchu資料\課程資料\電腦視覺\dataset\瓦斯噴燈\gastorch_0170.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>734</width>
+		<height>734</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>gastorch</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>326</xmin>
+			<ymin>229</ymin>
+			<xmax>734</xmax>
+			<ymax>707</ymax>
+		</bndbox>
+	</object>
+</annotation>
