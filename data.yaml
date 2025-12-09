@@ -1,0 +1,7 @@
+train: D:\大學資料\電腦視覺\期末專案\dataset\test2\images
+val: D:\大學資料\電腦視覺\期末專案\dataset\test2\images
+test: D:\大學資料\電腦視覺\期末專案\dataset\realworld
+# test: ../test/images
+
+nc: 8
+names: ['cleaner', 'cutter', 'gasoven', 'gastorch', 'knife', 'scissors', 'screwdriver', 'socket']
